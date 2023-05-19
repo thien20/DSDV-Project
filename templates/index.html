@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Graph</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div>
+        <div id="graph">
+            <h2>Line Graph</h2>
+            {{ line_html|safe }}
+        </div>
+    </div>
+    <div>
+        <div id="graph">
+            <h2>Heat Map</h2>
+            {{ heatmap_html|safe }}
+        </div>
+    </div>
+    <style>
+        #graph {
+            width: 800px;
+            height: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</body>
+</html>
