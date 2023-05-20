@@ -7,22 +7,39 @@
 <body>
     <div>
         <div id="graph">
-            <h2>Line Graph</h2>
-            {{ line_html|safe }}
+            <h2>Line Graph - Year-Genres</h2>
+            {{ linegraph_html|safe }}
         </div>
     </div>
     <div>
         <div id="graph">
-            <h2>Heat Map</h2>
-            {{ heatmap_html|safe }}
+            <h2>Heat Map - Year-Genres</h2>
+            {{ heatmap_html_year|safe }}
         </div>
     </div>
-    <style>
-        #graph {
-            width: 800px;
-            height: 600px;
-            margin: 0 auto;
-        }
-    </style>
+    <div>
+        <div id="graph">
+            <h2>Heat Map - Genres-Score</h2>
+            {{ heatmap_html_score|safe }}
+        </div>
+    </div>
+    <div>
+        <div id="graph">
+            <h2>Heat Map - Genres-Score_Group</h2>
+            {{ heatmap_html_scoregroup|safe }}
+        </div>
+    </div>
+    <div>
+        <div id="graph">
+            <h2>Table - Genres-Score_Group</h2>
+            {{ table_html_score|safe }}
+        </div>
+    </div>
+    <div>
+        <div id="graph">
+            <h2>Line chart - Genres-Score_Group</h2>
+            {{ line_html_score|safe }}
+        </div>
+    </div>
 </body>
 </html>

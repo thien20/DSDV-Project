@@ -1,36 +1,29 @@
 import plotly.graph_objects as go
 
-def generate_line_chart(df):
-    # Convert the dataframe to a Plotly-compatible format
-    df_plotly = df
+def generate_line_chart_year_genres(df):
     
-
-    # Create line plots for each feature
     line_plots = []
-    for feature in df_plotly.columns[1:]:
+    for feature in df.columns[1:]:
         line_plot = go.Scatter(
-            x=df_plotly['index'],
-            y=df_plotly[feature],
+            x=df['index'],
+            y=df[feature],
             mode='lines+markers',
             name=feature
         )
         line_plots.append(line_plot)
 
-    # Create the layout for line chart
-    layout_line = go.Layout(
+    layout = go.Layout(
         xaxis=dict(title='Year'),
         yaxis=dict(title='Count'),
         title='Genre Count by Year - Line Chart',
         showlegend=True
     )
 
-    # Create the figure for line chart
-    fig_line = go.Figure(data=line_plots, layout=layout_line)
+    fig_line = go.Figure(data=line_plots, layout=layout)
 
     return fig_line
 
-def generate_heatmap(df):
-    # Create the heatmap
+def generate_heatmap_year_genres(df):
     df = df.set_index("index")
     heatmap = go.Heatmap(
         x=df.columns,
@@ -39,14 +32,104 @@ def generate_heatmap(df):
         colorscale='Blues'
     )
 
-    # Create the layout for heatmap
     layout_heatmap = go.Layout(
         xaxis=dict(title='Genres'),
         yaxis=dict(title='Year'),
         title='Genre Count by Year - Heatmap'
     )
 
-    # Create the figure for heatmap
     fig_heatmap = go.Figure(data=[heatmap], layout=layout_heatmap)
 
     return fig_heatmap
+
+
+def generate_line_chart_score_group_genres(df):
+    #df_plotly1 = df.reset_index()
+    df_plotly1 = df
+    line_plots = []
+    for feature in df_plotly1.columns[1:]:
+        line_plot = go.Scatter(
+            x=df_plotly1['score-group'],
+            y=df_plotly1[feature],
+            mode='lines+markers',
+            name=feature
+        )
+        line_plots.append(line_plot)
+
+    layout = go.Layout(
+        xaxis=dict(title='count'),
+        yaxis=dict(title='score-group'),
+        title='Genre Count by score-group - Line Chart',
+        showlegend=True
+    )
+
+    fig = go.Figure(data=line_plots, layout=layout)
+
+    return fig
+
+
+def generate_table_score_group_genres(df):
+    #df_plotly1 = df.reset_index()
+    df_plotly1 = df
+    bar_plots = []
+    for feature in df_plotly1.columns[1:]:
+        bar_plot = go.Bar(
+            x=df_plotly1['score-group'],
+            y=df_plotly1[feature],
+            name=feature
+        )
+        bar_plots.append(bar_plot)
+
+    layout = go.Layout(
+        xaxis=dict(title='score-group'),
+        yaxis=dict(title='count'),
+        title='Genre Count by score-group - Bar Chart',
+        barmode='group'
+    )
+
+    fig = go.Figure(data=bar_plots, layout=layout)
+
+    return fig
+
+
+
+
+
+def generate_heatmap_score_genres(df):
+    df = df.set_index('score')
+    heatmap = go.Heatmap(
+        x=df.columns,
+        y=df.index,
+        z=df.values,
+        colorscale='Blues'
+    )
+
+    layout = go.Layout(
+        xaxis=dict(title='Genres'),
+        yaxis=dict(title='score'),
+        title='Genre Count by Score - Heatmap'
+    )
+
+    fig = go.Figure(data=[heatmap], layout=layout)
+
+    return fig
+
+
+def generate_heatmap_score_group_genres(df):
+    df = df.set_index('score-group')
+    heatmap = go.Heatmap(
+        x=df.columns,
+        y=df.index,
+        z=df.values,
+        colorscale='Blues'
+    )
+
+    layout = go.Layout(
+        xaxis=dict(title='Genres'),
+        yaxis=dict(title='score'),
+        title='Genre Count by SCORE-GROUPS - Heatmap'
+    )
+
+    fig = go.Figure(data=[heatmap], layout=layout)
+    return fig
+   
